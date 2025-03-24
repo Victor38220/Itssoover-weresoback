@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Status Toggle</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+    }
+    .block {
+      width: 50vw;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      transition: background-color 0.3s, color 0.3s;
+      background-color: transparent;
+    }
+    /* Default text colors for non-highlighted state */
+    .red-text {
+      color: red;
+    }
+    .green-text {
+      color: green;
+    }
+    /* Highlighted state: block background becomes red or green and text becomes white */
+    .red-text.highlight {
+      background-color: red;
+      color: white;
+    }
+    .green-text.highlight {
+      background-color: green;
+      color: white;
+    }
+    #buttonContainer {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 2em;
+      padding: 20px 40px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Red block (initially highlighted) -->
+    <div id="block1" class="block red-text highlight">Its so over</div>
+    <!-- Green block -->
+    <div id="block2" class="block green-text">We're so back</div>
+  </div>
+  
+  <div id="buttonContainer">
+    <!-- With block1 highlighted, the next transition (red→green) means the button initially says "Poggers" -->
+    <button id="toggleButton">Poggers</button>
+  </div>
+  
+  <script>
+    const block1 = document.getElementById("block1");
+    const block2 = document.getElementById("block2");
+    const button = document.getElementById("toggleButton");
+
+    button.addEventListener("click", function() {
+      if (block1.classList.contains("highlight")) {
+        // Currently red is highlighted, switch to green
+        block1.classList.remove("highlight");
+        block2.classList.add("highlight");
+        // Next action (green → red) -> button says "Damb"
+        button.textContent = "Damb";
+      } else {
+        // Currently green is highlighted, switch to red
+        block2.classList.remove("highlight");
+        block1.classList.add("highlight");
+        // Next action (red → green) -> button says "Poggers"
+        button.textContent = "Poggers";
+      }
+    });
+  </script>
+</body>
+</html>
